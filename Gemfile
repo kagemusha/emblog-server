@@ -7,6 +7,7 @@ gem 'active_model_serializers'
 
 
 gem 'devise'
+gem 'rolify'
 gem 'pundit'
 
 group :development do

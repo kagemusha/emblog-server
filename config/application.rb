@@ -27,20 +27,22 @@ module EmblogServer
       g.helper_specs false
     end
 
-    config.middleware.insert_before "Rack::Lock", "Rack::Cors", :debug => true, :logger => Rails.logger do
-      allow do
-        origins '*'
+    unless Rails.env == "test"
+      config.middleware.insert_before "Rack::Lock", "Rack::Cors", :debug => true, :logger => Rails.logger do
+        allow do
+          origins '*'
 
-        resource '/cors',
-                 :headers => :any,
-                 :methods => [:post],
-                 :credentials => true,
-                 :max_age => 0
+          resource '/cors',
+                  :headers => :any,
+                  :methods => [:post],
+                  :credentials => true,
+                  :max_age => 0
 
-        resource '*',
-                 :headers => :any,
-                 :methods => [:get, :post, :delete, :put, :options],
-                 :max_age => 0
+          resource '*',
+                  :headers => :any,
+                  :methods => [:get, :post, :delete, :put, :options],
+                  :max_age => 0
+        end
       end
     end
 

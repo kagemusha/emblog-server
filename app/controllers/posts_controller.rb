@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  doorkeeper_for :all, except: [:index, :show]
 
   def index
     @posts = Post.all
@@ -11,8 +12,9 @@ class PostsController < ApplicationController
   end
 
   def create
+    authorize Post
     post = Post.create permitted_params
-    post.user = current_user
+    post.author = current_user
     if post.save
       render json: post
     else

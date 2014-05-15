@@ -2,8 +2,7 @@ class PostsController < ApplicationController
   doorkeeper_for :all, except: [:index, :show]
 
   def index
-    @posts = Post.all
-    render json: @posts
+    render json: Post.published
   end
 
   def show

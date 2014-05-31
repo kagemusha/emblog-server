@@ -2,6 +2,10 @@ class PostsController < ApplicationController
   doorkeeper_for :all, except: [:index, :show]
 
   def index
+    if params["type"] == "contributed"
+      render json: current_user.posts
+      return
+    end
     render json: Post.published
   end
 

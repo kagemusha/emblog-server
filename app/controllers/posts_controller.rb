@@ -32,6 +32,6 @@ class PostsController < ApplicationController
   end
 
   def permitted_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :markdown, :html)
   end
 end

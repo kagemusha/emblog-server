@@ -25,6 +25,13 @@ class PostsController < ApplicationController
     end
   end
 
+  def update
+    post = Post.find(params[:id])
+    authorize post
+    post.update! permitted_params
+    render json: post
+  end
+
   def destroy
     @post = Post.find(params[:id])
     @post.destroy

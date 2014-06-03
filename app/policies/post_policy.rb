@@ -16,6 +16,7 @@ class PostPolicy < Struct.new(:user, :post)
   end
 
   def destroy?
-    user.has_role?(:admin)
+    return true if user.has_role?(:admin)
+    user.has_role?(:contributor) and post.status == "draft"
   end
 end

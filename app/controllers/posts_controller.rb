@@ -33,8 +33,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
+    post = Post.find(params[:id])
+    authorize post
+    post.destroy
     render json: {}
   end
 

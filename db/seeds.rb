@@ -9,5 +9,10 @@
 #puts 'CREATED ADMIN USER: ' << user.email
 # Environment variables (ENV['...']) can be set in the file .env file.
 
-user = User.create :name => "madmad", :email => "t@t.com", :password => "tester", :password_confirmation =>"tester"
+user = User.create :name => "tester", :email => "t@t.com", :password => "tester", :password_confirmation =>"tester"
+user.add_role :contributor
+
+post_text="This is the first post, the first post, the first post, the first post, the first post!"
+post = Post.create :author=>user, :title=>"First Post", :html=>"<p>#{post_text}</p>", :markdown=>post_text,
+          :status=>"published"
 

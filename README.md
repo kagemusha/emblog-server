@@ -25,9 +25,8 @@ Installation
 License
 -------
 
-[```MIT License```](http://opensource.org/licenses/MIT)```.extend```
-  `year: whatever year it is`
-  `copyright holders: "Michael Madrid and emblog-server project contributors`
+[MIT License](http://opensource.org/licenses/MIT), for the current year, with copyright 
+holders being Michael Madrid and emblog-server contributors
 
     
     

@@ -7,5 +7,13 @@ class Post < ActiveRecord::Base
   def set_draft
     self.status = "draft" if not self.status
   end
+
+  def status=(new_status)
+    if (status=="draft" or not status) and new_status == "published"
+      self.published_at=Time.zone.now
+    end
+    write_attribute(:status, new_status)
+  end
+
 end
 

@@ -5,7 +5,9 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title
       t.text :markdown
       t.text :html
+      t.text :short
       t.string :status
+      t.datetime :published_at
       t.timestamps
     end
   end

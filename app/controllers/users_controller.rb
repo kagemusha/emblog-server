@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  doorkeeper_for :all, except: [:current]
+  before_action :doorkeeper_authorize!, :all, except: [:current]
 
   def index
     @users = User.all

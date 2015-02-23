@@ -1,12 +1,17 @@
 class PostsController < ApplicationController
-  doorkeeper_for :all, except: [:index, :show]
+  before_action :doorkeeper_authorize!, :all, except: [:index, :show]
 
   def index
     if params["type"] == "contributed"
       render json: current_user.posts
       return
     end
-    render json: Post.published
+    if params["updated_after"]
+     posts = Post.published.where("updated_at > ?", Time.zone.parse(params["updated_after"])+1.second)
+    else
+      posts = Post.published
+    end
+    render json: posts
   end
 
   def show
